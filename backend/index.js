@@ -7,7 +7,7 @@ const app = express();
 const db = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',       //"localhost", modified for testing
     user: "root",
-    password: process.env.DB_PASSWORD, //"",
+    password: process.env.DB_PASSWORD, //"", //password replaced with password in yml file
     database: "test"
 })
 
