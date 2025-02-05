@@ -1,0 +1,50 @@
+
+services:
+  backend:
+    build : ./backend
+    image :  likhithabz55/node-web-app-backend
+    ports :
+      - "8800:8800"
+    depends_on:
+      mysql :
+        condition: service_healthy
+    environment:
+      DB_HOST : mysql
+      DB_USER : root
+      DB_PASSWORD : pwd
+      DB_NAME : test
+    restart : always
+
+  mysql:
+    image : mysql:8.0
+    container_name: mysql-db
+    restart : always
+    environment:
+      MYSQL_ROOT_PASSWORD : pwd
+      MYSQL_DATABASE : test
+    ports :
+      - "3306:3306"
+    command:
+      --default-authentication-plugin=mysql_native_password
+    volumes :
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppwd"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  frontend:
+    build:
+      context : ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart : always
+
+volumes :
+  mysql_data:
+
