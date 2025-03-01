@@ -12,11 +12,11 @@ RUN npm run build
 
 FROM node:latest
 
-WORKDIR /Assignment_4_crud-react-node-mySQL-go/frontend
+WORKDIR /cs686_midterm_source/frontend
 
 #RUN ls -alh /frontend/build
 
-COPY --from=build /Assignment_4_crud-react-node-mySQL-go/frontend/dist /Assignment_4_crud-react-node-mySQL-go/frontend/dist
+COPY --from=build /cs686_midterm_source/frontend/dist /cs686_midterm_source/frontend/dist
 
 RUN npm install -g serve
 
