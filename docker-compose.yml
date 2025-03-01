@@ -2,7 +2,7 @@
 services:
   backend:
     build : ./backend
-    image :  likhithabz55/node-web-app-backend
+    image : cs686_midterm_source/backend
     ports :
       - "8800:8800"
     depends_on:
@@ -39,6 +39,7 @@ services:
   frontend:
     build:
       context : ./frontend
+    image: cs686_midterm_source/frontend
     ports:
       - "3000:3000"
     depends_on:
