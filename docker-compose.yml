@@ -10,11 +10,11 @@ services:
         condition: service_healthy
     environment:
       DB_HOST : mysql
+      DB_PORT : 3306
       DB_USER : root
       DB_PASSWORD : pwd
-      DB_NAME : test
+      DB_DATABASE : test
     restart : always
-
   mysql:
     image : mysql:8.0
     container_name: mysql-db
@@ -35,7 +35,6 @@ services:
       retries: 5
       start_period: 30s
       timeout: 5s
-
   frontend:
     build:
       context : ./frontend
