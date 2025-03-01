@@ -1,6 +1,6 @@
 FROM node:latest AS build
 
-WORKDIR /Assignment_4_crud-react-node-mySQL-go/frontend
+WORKDIR /cs686_midterm_source/frontend
 
 COPY package*.json ./
 
