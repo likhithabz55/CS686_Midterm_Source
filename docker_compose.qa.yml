@@ -1,0 +1,57 @@
+services:
+  backend:
+    image: 343830488876.dkr.ecr.us-east-1.amazonaws.com/midterm/ecr_1:backend_latest
+    ports:
+      - "8800:8800"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_PASSWORD: pwd
+      DB_DATABASE: test
+      DB_USER: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+    networks:
+      - net1
+
+  frontend:
+    image: 343830488876.dkr.ecr.us-east-1.amazonaws.com/midterm/ecr_1:frontend_latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart : always
+    networks:
+      - net1
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: test
+    ports:
+      - "3306:3306"
+    command:
+      --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppwd" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+    networks:
+      - net1
+
+
+networks:
+  net1:
+
+volumes:
+  mysql_data:
