@@ -1,6 +1,7 @@
 
 services:
   backend:
+    container_name: backend
     build : ./backend
     image : cs686_midterm_source/backend
     ports :
@@ -17,7 +18,7 @@ services:
     restart : always
   mysql:
     image : mysql:8.0
-    container_name: mysql-db
+    container_name: database
     restart : always
     environment:
       MYSQL_ROOT_PASSWORD : pwd
@@ -36,6 +37,7 @@ services:
       start_period: 30s
       timeout: 5s
   frontend:
+    container_name: frontend
     build:
       context : ./frontend
     image: cs686_midterm_source/frontend
@@ -44,6 +46,8 @@ services:
     depends_on:
       - backend
     restart : always
+    environment:
+      BACKEND_IP : backend
 
 volumes :
   mysql_data:
