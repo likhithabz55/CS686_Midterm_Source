@@ -54,4 +54,4 @@ networks:
   net1:
 
 volumes:
-  mysql_data:                                                                                   1,6           Top
+  mysql_data:
