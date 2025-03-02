@@ -18,6 +18,7 @@ ADD_BOOK_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$BOO
 # Step 2: Retry fetching the list of books if database is down or slow
 MAX_RETRIES=10
 RETRY_DELAY=10  # in seconds
+sleep $RETRY_DELAY
 
 for ((i=1; i<=MAX_RETRIES; i++)); do
   echo "Attempt $i to fetch books from the database..."
