@@ -29,16 +29,6 @@ app.get("/books", (req,res)=>{
     })
   })
 
-
-  //postman ---> post method
-  //json body bellow
-  //----------------------------- http://localhost:8800/books
-  //{
-// "title": "title from client",
-// "description": "description from client",
-// "cover": "cover from client"
-// }
-
   app.post("/books", (req,res)=>{
     const query = "INSERT INTO books (`title`, `description`, `price`, `cover`) VALUES (?)"
     const values = [

@@ -16,7 +16,7 @@ BOOK_DATA='{"title": "Superman Returns!!", "description": "New Adventures of Sup
 ADD_BOOK_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$BOOK_DATA" http://localhost:8800/books)
 
 # Step 2: Retry fetching the list of books if database is down or slow
-MAX_RETRIES=5
+MAX_RETRIES=10
 RETRY_DELAY=10  # in seconds
 
 for ((i=1; i<=MAX_RETRIES; i++)); do
