@@ -14,6 +14,7 @@ const db = mysql.createConnection({
 
 app.use(express.json())//return json data using the api server postman
 
+const cors = require('cors');//added
 app.use(cors())
 
 app.get("/", (req,res)=>{
