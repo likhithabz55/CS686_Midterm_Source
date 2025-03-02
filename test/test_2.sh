@@ -4,6 +4,7 @@
 check_book_in_db() {
   BOOKS_RESPONSE=$(curl -s -X GET http://localhost:8800/books)
   if [[ "$BOOKS_RESPONSE" == *"Superman Returns!!"* ]]; then
+    echo $BOOKS_RESPONSE
     return 0  # Book found
   else
     return 1  # Book not found
@@ -16,7 +17,7 @@ BOOK_DATA='{"title": "Superman Returns!!", "description": "New Adventures of Sup
 ADD_BOOK_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$BOOK_DATA" http://localhost:8800/books)
 
 # Step 2: Retry fetching the list of books if database is down or slow
-MAX_RETRIES=25
+MAX_RETRIES=15
 RETRY_DELAY=10  # in seconds
 sleep $RETRY_DELAY
 
