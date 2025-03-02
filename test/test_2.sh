@@ -20,6 +20,7 @@ MAX_RETRIES=25
 RETRY_DELAY=10  # in seconds
 sleep $RETRY_DELAY
 
+set -x
 for ((i=1; i<=MAX_RETRIES; i++)); do
   echo "Attempt $i to fetch books from the database..."
   if check_book_in_db; then
@@ -30,6 +31,7 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
     sleep $RETRY_DELAY
   fi
 done
+set +x
 
 # Step 3: If all retries fail
 echo "Test failed: Could not find the book in the database after $MAX_RETRIES attempts."
