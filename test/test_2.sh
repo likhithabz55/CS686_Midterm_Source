@@ -15,7 +15,15 @@ check_book_in_db() {
 BOOK_DATA='{"title": "Superman Returns!!", "description": "New Adventures of Superman", "price": 19.99, "cover": "test-cover-url"}'
 
 set -x
-ADD_BOOK_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$BOOK_DATA" http://localhost:8800/books)
+for ((i=1; i<=5; i++)); do
+  ADD_BOOK_RESPONSE=$(curl -v -s -X POST -H "Content-Type: application/json" -d "$BOOK_DATA" http://localhost:8800/books)
+  if [ $? -eq 0 ]; then
+    echo "Request successful"
+    break
+  fi
+  echo "Retrying in ..5. Attempt $i"
+  sleep 5
+done
 set +x
 
 # Step 2: Retry fetching the list of books if database is down or slow
