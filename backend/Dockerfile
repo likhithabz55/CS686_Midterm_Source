@@ -6,6 +6,8 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN npm install cors
+
 # Install nodemon globally
 RUN npm install -g nodemon
 
