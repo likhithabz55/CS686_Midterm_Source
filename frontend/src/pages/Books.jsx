@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-//rafce
+
+
 const Books = () => {
 
 const [books, setBooks] = useState([])
@@ -9,7 +10,7 @@ const [books, setBooks] = useState([])
 useEffect(()=>{
 const fetchAllBooks = async ()=>{
     try {
-      const res = await axios.get(`http://localhost:8800/books`)
+      const res = await axios.get(`http://lamabooks.duckdns.org/backend/books`)
       setBooks(res.data)
       console.log(res)
     }catch(err){
@@ -22,7 +23,7 @@ fetchAllBooks()
 
 const handleDelete = async (id)=>{
     try{
-    await axios.delete(`http://localhost:8800/books/`+id)
+    await axios.delete(`http://lamabooks.duckdns.org/backend/books/`+id)
     window.location.reload()
     }catch(err){
         console.log(err)

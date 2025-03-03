@@ -1,19 +1,7 @@
 import express  from "express";
 import mysql from "mysql"
-import cors from "cors"
-
-//const express = require('express'); //added for cors
-//const cors = require('cors') //added for cors
 
 const app = express();
-
-// Define the CORS options
-const corsOptions = {
-    credentials: true,
-    origin: ['http://localhost:3000', 'http://localhost:80', 'http://44.203.93.24', 'https://44.203.93.24'] // Whitelist the domains you want to allow
-};
-
-app.use(cors(corsOptions));
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -24,10 +12,6 @@ const db = mysql.createConnection({
 })
 
 app.use(express.json())//return json data using the api server postman
-
-// default given by the code
-//const cors = require('cors');
-//app.use(cors())
 
 app.get("/", (req,res)=>{
     res.json("Hello World from the backend!!!")
@@ -43,6 +27,7 @@ app.get("/books", (req,res)=>{
   })
 
   app.post("/books", (req,res)=>{
+
     const query = "INSERT INTO books (`title`, `description`, `price`, `cover`) VALUES (?)"
     const values = [
        req.body.title,
