@@ -10,7 +10,7 @@ const app = express();
 // Define the CORS options
 const corsOptions = {
     credentials: true,
-    origin: ['http://localhost:3000', 'http://localhost:80', 'http://44.203.93.24:3000', 'https://44.203.93.24:3000'] // Whitelist the domains you want to allow
+    origin: ['http://localhost:3000', 'http://localhost:80', 'http://44.203.93.24', 'https://44.203.93.24'] // Whitelist the domains you want to allow
 };
 
 app.use(cors(corsOptions));
