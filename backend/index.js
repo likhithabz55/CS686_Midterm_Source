@@ -1,6 +1,6 @@
 import express  from "express";
 import mysql from "mysql"
-// import cors from "cors"
+import cors from "cors"
 
 //const express = require('express'); //added for cors
 //const cors = require('cors') //added for cors
@@ -8,12 +8,12 @@ import mysql from "mysql"
 const app = express();
 
 // Define the CORS options
-//const corsOptions = {
-//    credentials: true,
-//   origin: ['http://localhost:3000', 'http://100.27.24.65:3000', 'https://100.27.24.65:3000'] // Whitelist the domains you want to allow
-//};
+const corsOptions = {
+    credentials: true,
+    origin: ['http://localhost:3000', 'http://localhost:80', 'http://44.203.93.24:3000', 'https://44.203.93.24:3000'] // Whitelist the domains you want to allow
+};
 
-//app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
