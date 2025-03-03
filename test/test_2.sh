@@ -14,7 +14,9 @@ check_book_in_db() {
 # Step 1: Add a new book via frontend
 BOOK_DATA='{"title": "Superman Returns!!", "description": "New Adventures of Superman", "price": 19.99, "cover": "test-cover-url"}'
 
+set -x
 ADD_BOOK_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$BOOK_DATA" http://localhost:8800/books)
+set +x
 
 # Step 2: Retry fetching the list of books if database is down or slow
 MAX_RETRIES=15
