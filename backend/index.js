@@ -8,14 +8,14 @@ import cors from "cors"
 const app = express();
 
 // Define the CORS options
-const corsOptions = {
+/*const corsOptions = {
     credentials: true,
     origin: ['http://localhost:3000', 'http://localhost:80', 'http://lamabooks.duckdns.org', 'http://lamabooks.duckdns.org'], // Whitelist the domains you want to allow
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
-};
+};*/
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
