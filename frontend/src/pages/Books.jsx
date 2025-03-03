@@ -9,7 +9,7 @@ const [books, setBooks] = useState([])
 useEffect(()=>{
 const fetchAllBooks = async ()=>{
     try {
-      const res = await axios.get(`http://lamabooks.duckdns.org/backend/books`)
+      const res = await axios.get(`https://lamabooks.duckdns.org/backend/books`)
       setBooks(res.data)
       console.log(res)
     }catch(err){
@@ -22,7 +22,7 @@ fetchAllBooks()
 
 const handleDelete = async (id)=>{
     try{
-    await axios.delete(`http://lamabooks.duckdns.org/backend/books/`+id)
+    await axios.delete(`https://lamabooks.duckdns.org/backend/books/`+id)
     window.location.reload()
     }catch(err){
         console.log(err)
