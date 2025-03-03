@@ -1,6 +1,6 @@
 import express  from "express";
 import mysql from "mysql"
-import cors from "cors"
+// import cors from "cors"
 
 //const express = require('express'); //added for cors
 //const cors = require('cors') //added for cors
@@ -8,12 +8,12 @@ import cors from "cors"
 const app = express();
 
 // Define the CORS options
-const corsOptions = {
-    credentials: true,
-    origin: ['http://localhost:3000', 'http://100.27.24.65:3000', 'https://100.27.24.65:3000'] // Whitelist the domains you want to allow
-};
+//const corsOptions = {
+//    credentials: true,
+//   origin: ['http://localhost:3000', 'http://100.27.24.65:3000', 'https://100.27.24.65:3000'] // Whitelist the domains you want to allow
+//};
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -25,8 +25,8 @@ const db = mysql.createConnection({
 
 app.use(express.json())//return json data using the api server postman
 
-//const cors = require('cors');//added
-
+// default given by the code
+//const cors = require('cors');
 //app.use(cors())
 
 app.get("/", (req,res)=>{
