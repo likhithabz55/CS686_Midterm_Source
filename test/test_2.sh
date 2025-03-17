@@ -12,7 +12,7 @@ check_book_in_db() {
 }
 
 # Step 1: Add a new book via frontend
-BOOK_DATA='{"title": "Superman Returns!!", "description": "New Adventures of Superman", "price": 19.99, "cover": "test-cover-url"}'
+BOOK_DATA='{"title": "Superman Returns!!", "description": "New Adventures of Superman","price": 19.99, "cover": "test-cover-url"}'
 
 set -x
 for ((i=1; i<=5; i++)); do
