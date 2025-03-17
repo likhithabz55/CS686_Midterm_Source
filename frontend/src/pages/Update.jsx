@@ -27,7 +27,7 @@ const Update = () => {
    const handleClick = async e =>{
     e.preventDefault()
     try{
-        await axios.put(`https://lamabooks.duckdns.org/backend/books/`+ bookID, book)
+        await axios.put(`https://lamacomics.rocks/backend/books/`+ bookID, book)
         navigate("/")
     }catch(err){
         console.log(err)

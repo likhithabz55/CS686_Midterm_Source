@@ -20,7 +20,7 @@ const Add = () => {
    const handleClick = async e =>{
     e.preventDefault()
     try{
-        await axios.post(`https://lamabooks.duckdns.org/backend/books`, book)
+        await axios.post(`https://lamacomics.rocks/backend/books`, book)
         navigate("/")
     }catch(err){
         console.log(err)
